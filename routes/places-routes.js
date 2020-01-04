@@ -1,6 +1,6 @@
-const express = require('express')
-
-const router = express.Router()
+const express = require('express');
+const HttpError = require('../models/http-error');
+const router = express.Router();
 
 const DUMMY_PLACES = [
   {
@@ -29,24 +29,34 @@ const DUMMY_PLACES = [
     },
     creator: 'u2'
   }
-]
+];
 
 router.get('/:pid', (req, res, next) => {
-  const placeId = req.params.pid
+  const placeId = req.params.pid;
 
   const place = DUMMY_PLACES.find(p => {
-    return p.id === placeId
-  })
-  res.json({ place })
-})
+    return p.id === placeId;
+  });
+
+  if (!place) {
+    throw new HttpError('Could Not find place for the provided place ID', 404);
+  }
+  res.json({ place });
+});
 
 router.get('/user/:uid', (req, res, next) => {
-  const userId = req.params.uid
+  const userId = req.params.uid;
 
-  const userPlace = DUMMY_PLACES.find(u => {
-    return u.creator === userId
-  })
-  res.json({ userPlace })
-})
+  const place = DUMMY_PLACES.find(u => {
+    return u.creator === userId;
+  });
 
-module.exports = router
+  if (!place) {
+    return next(
+      new HttpError('Could Not find Place for the provided User ID', 404)
+    );
+  }
+  res.json({ place });
+});
+
+module.exports = router;
