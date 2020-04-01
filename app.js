@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const placesRoutes = require('./routes/places-routes');
 const userRoutes = require('./routes/users-routes');
@@ -25,4 +26,16 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || 'An unknown error Occured' });
 });
 
-app.listen(5000, () => console.log('Listining to port 5000'));
+mongoose
+  .connect(
+    'mongodb+srv://ankit:Ankit007@cluster0-q2m7h.mongodb.net/places?retryWrites=true&w=majority',
+    {
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useNewUrlParser: true
+    }
+  )
+  .then(() => {
+    app.listen(5000, () => console.log('Listining to port 5000'));
+  })
+  .catch(error => console.log(error));
