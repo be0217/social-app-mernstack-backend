@@ -28,10 +28,9 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    'mongodb+srv://ankit:Ankit007@cluster0-q2m7h.mongodb.net/places?retryWrites=true&w=majority',
+    'mongodb+srv://ankit:Ankit007@cluster0-vwlw2.mongodb.net/places?retryWrites=true&w=majority',
     {
       useUnifiedTopology: true,
-      useCreateIndex: true,
       useNewUrlParser: true
     }
   )
