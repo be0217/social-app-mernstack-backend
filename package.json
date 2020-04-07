@@ -19,6 +19,7 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
+    "mongoose-unique-validator": "^2.0.3",
     "nodemon": "^2.0.2"
   }
 }

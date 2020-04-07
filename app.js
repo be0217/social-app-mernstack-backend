@@ -23,7 +23,7 @@ app.use((error, req, res, next) => {
     return next(error);
   }
   res.status(error.code || 500);
-  res.json({ message: error.message || 'An unknown error Occured' });
+  res.json({ message: error.message || 'An unknown error Occured 😃' });
 });
 
 mongoose
@@ -31,10 +31,11 @@ mongoose
     'mongodb+srv://ankit:Ankit007@cluster0-vwlw2.mongodb.net/places?retryWrites=true&w=majority',
     {
       useUnifiedTopology: true,
-      useNewUrlParser: true
+      useNewUrlParser: true,
+      useCreateIndex: true
     }
   )
   .then(() => {
-    app.listen(5000, () => console.log('Listining to port 5000'));
+    app.listen(5000, () => console.log('Listining to port 5000 😆😆😆'));
   })
   .catch(error => console.log(error));
