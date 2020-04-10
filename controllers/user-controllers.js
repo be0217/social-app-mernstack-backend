@@ -35,7 +35,7 @@ const signup = async (req, res, next) => {
       new HttpError('Invalid Input Passed please check the value', 422)
     );
   }
-  const { name, email, password, places } = req.body;
+  const { name, email, password } = req.body;
 
   const hasUser = DUMMY_USER.find(user => user.email === email);
 
@@ -65,7 +65,7 @@ const signup = async (req, res, next) => {
     image:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg',
     password,
-    places
+    places: []
   });
 
   try {
